@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Products from "../../components/Products/Products";
-import ajax from "../../ajax/ajax";
+import api from "../../api";
 import Navbar from "../../components/NavBar/Navbar";
 import useProductStore from "../../store/store";
 import Checkout from "../../components/Checkout/Checkout";
@@ -18,7 +18,7 @@ function Home() {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const fetchProducts = await ajax.fetchProducts();
+        const fetchProducts = await api.fetchProducts();
         setProducts(fetchProducts.data);
         setLoading(false);
       } catch (error) {
