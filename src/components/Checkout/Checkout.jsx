@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+// eslint-disable-next-line react/prop-types
+import  { useState, useEffect } from "react";
 import "./Checkout.css";
 import CheckoutItem from "./CheckoutItem";
 import closeicon from "../../assets/icons/closeicon.svg";
 import { sumAmount } from "../../utils/sumAmount";
 import { standardAmountFormat } from "../../utils/amountFormatter";
 import { OutlinedButton } from "../Elements/Buttons/Buttons";
-import ajax from "../../ajax/ajax";
+import api from "../../api";
 import Invoice from "../Invoice/invoice";
 import DetailsForm from "../Elements/Forms/DetailsForm";
 import SuccessComponent from "./SuccessComponent";
@@ -33,7 +34,7 @@ function Checkout({ products, closeCheckout, removeItem, removeAllProducts }) {
   const generateInvoice = async () => {
     try {
       setLoading(true);
-      const response = await ajax.generateInvoice(buyer, productList(products));
+      const response = await api.generateInvoice(buyer, productList(products));
       const weblnStatus = await checkWebln()
       if (weblnStatus) {
         setLoading(false);

@@ -9,8 +9,7 @@ import { checkWebln } from "../../utils/checkWebln";
 
 function invoice({ invoice, goBack }) {
   const payInvoice = async () => {
-    const weblnStatus = await checkWebln();
-    if (weblnStatus) {
+    if (checkWebln()) {
       await window.webln.sendPayment(invoice.paymentRequest);
     } else {
       handleError("WebLN is not enabled");
